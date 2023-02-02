@@ -5,7 +5,7 @@ import {
 } from '@apollo/client';
 import {LOAD_CLASSES} from "../GraphQL/Queries";
 
-function GetClasses() {
+function GetClassesData() {
     const {error, loading, data} = useQuery(LOAD_CLASSES);
     const [classes, setClasses] = useState([]);
 
@@ -17,12 +17,15 @@ function GetClasses() {
         };
     }, [data]);
 
-    return <div>
-        <h2>Classes</h2>
-        {classes.map((val) => {
-            return <h3>{val.Name}</h3>
-        })}
+    return (
+        <div className='class-data'>
+            <ul>
+            {classes.map((val) => {
+                return <li><h3>{val.Name}</h3><br />{val.Desc}</li>
+            })}
+            </ul>
         </div>
+    )
 }
 
-export default GetClasses;
+export default GetClassesData;

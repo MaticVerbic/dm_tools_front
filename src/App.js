@@ -8,7 +8,8 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import GetClasses from "./Components/GetClasses";
+import GetClassesData from "./Components/GetClassesData";
+import Navbar from "./Components/Navbar";
 
 const errorLink = onError(({ graphqlErrors, networkError}) => {
   if (graphqlErrors) {
@@ -28,8 +29,13 @@ const client = new ApolloClient({
   link: link, 
 });
 
+
+
 function App() {
-  return <ApolloProvider client={client}><GetClasses /></ApolloProvider>
+  return <ApolloProvider client={client}>
+    <Navbar />
+    <GetClassesData />
+    </ApolloProvider>
 }
 
 export default App;
